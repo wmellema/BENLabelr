@@ -1,0 +1,22 @@
+<link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+
+<div class="content">
+
+<header>
+  <h1>
+  {{title}}
+  </h1>
+</header>
+{% for spec in specs %}
+<p>{{spec|join(": ")}}</p>
+{% endfor %}
+<img class='logo' src="logo.png"/>
+<div class="price">
+  <h2>&euro;{{price}}</h2>
+</div>
+</div>
+
+<footer>
+  <img class='datamatrix' src="{{label_tools.barcode(ean, module_width=0.6, module_height=10, font_size=15)}}"/>
+</footer>

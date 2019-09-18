@@ -1,0 +1,63 @@
+@page {
+    width: 144mm;
+    height: 205mm;
+    border:1px solid black;
+}
+html, body {
+  height: 100%;
+  margin:0;
+}
+.content{
+  height: 205mm;
+  font-family: 'Open Sans', sans-serif;
+  font-weight:600;
+}
+p{
+  margin-left: 10mm;
+}
+header{
+  background-color: #00a2e1;
+  width: 205mm;
+  height: 25mm;
+  padding: 10px;
+  color:white;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+footer{
+  background-color: #00a2e1;
+  width: 144mm;
+  height: 25mm;
+  bottom:0mm;
+  left:0mm;
+  position:absolute;
+}
+img {
+    height: 5mm;
+    display: block;
+    position: absolute;
+}
+.logo {
+    top: 3.5mm;
+    left: 1px;
+}
+.datamatrix {
+    image-rendering: pixelated;
+    bottom: 1px;
+    right: 1px;
+}
+.label {
+    font-family: Arial, Verdana, Helvetica, sans;
+    font-weight: bold;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 7px;
+}
+.price {
+  font-size: 2em;
+  position:absolute;
+  top: 150mm;
+  right: 10mm;
+
+}
