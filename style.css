@@ -20,10 +20,14 @@ header{
   width: 205mm;
   height: 25mm;
   padding: 10px;
+  margin:auto 0;
   color:white;
   font-family: 'Oswald', sans-serif;
   letter-spacing: 3px;
   font-weight: bold;
+}
+header > h1{
+  width:205mm;
 }
 footer{
   background-color: #00a2e1;

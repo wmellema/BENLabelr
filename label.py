@@ -1,9 +1,25 @@
 from bs4 import BeautifulSoup
 import requests, json
+from datetime import datetime
 import sys, os
 import time
+import hashlib
+
+if len(sys.argv) > 1:
+    os.system("rm *.pdf")
+    sys.exit(0)
 
 _ = os.system("clear")
+def printFile(filename):
+    printers = os.popen("lpstat -p | awk '$1 ~ /^printer/{print $2}'").read().split("\n")
+    del printers[-1]
+    print("Please select a printer")
+    for i,p in enumerate(printers):
+        print(" "+str(i+1)+") "+p)
+    sel = input("\nEnter number: ")
+    sel = int(sel)
+    print("Printing on "+printers[sel-1])
+    os.popen("lp -d "+printers[sel-1]+" "+filename)
 
 def getTweakersLink(ean):
     print("Loading product information...")
@@ -38,7 +54,7 @@ def getArticleSpecs(url,driver):
     return specs
 
 
-def generate_label(products):
+def generate_label(products,filename):
     from blabel import LabelWriter
     label_writer = LabelWriter("item_template.html",default_stylesheets=("style.css",))
     records= [
@@ -46,7 +62,7 @@ def generate_label(products):
         dict(sample_id="s02", sample_name="Sample 2")
     ]
 
-    label_writer.write_labels(products, target='logo_and_datamatrix.pdf',base_url='.')
+    label_writer.write_labels(products, target=filename+'.pdf',base_url='.')
 
 
 from selenium import webdriver
@@ -97,7 +113,13 @@ driver.close()
 
 print("\n")
 print("Generating PDF...")
-generate_label(products)
+file_label = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+file_label = hashlib.md5(file_label.encode('utf-8')).hexdigest()
+generate_label(products,file_label)
+print("Printing PDF...")
+# os.system("lp "+file_label+'.pdf')
+printFile(file_label+".pdf")
+time.sleep(5)
 _ = os.system("clear")
 print("Fuck you Bjorn")
 time.sleep(0.5)
