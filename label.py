@@ -88,7 +88,7 @@ _ = os.system("clear")
 print("Currently processing")
 for i,p in enumerate(products):
     print("\n - "+p['title']+" | "+p['price']+" | "+p['ean'])
-    specs = getArticleSpecs(p['link']',driver)
+    specs = getArticleSpecs(p['link'],driver)
     products[i]['specs'] = specs
 
 print("\nHiding sneaky browser...")
